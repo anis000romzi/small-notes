@@ -9,7 +9,7 @@ function NoteItemHeader({ title, createdAt, id }) {
 
   return (
     <div className={`note-item__header  ${theme === 'bright' ? '' : 'dark'}`}>
-      <Link to={`/${id}`}>
+      <Link to={`/notes/${id}`}>
         <h3 className="note-item__header__title">{title}</h3>
       </Link>
       <small className="note-item__header__created">

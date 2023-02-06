@@ -12,7 +12,7 @@ function NoteAddButton() {
       aria-label={locale === 'id' ? 'Tambah catatan' : 'add note'}
       className={`note-add ${theme === 'bright' ? '' : 'dark'}`}
       type="button"
-      onClick={() => navigate('/new')}
+      onClick={() => navigate('/notes/new')}
     >
       <FiFeather />
     </button>

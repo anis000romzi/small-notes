@@ -39,10 +39,10 @@ function HeaderBar({ logout, name }) {
             <button aria-label={locale === 'id' ? 'Ubah bahasa' : 'Change language'} type="button" onClick={toggleLocale}>{locale === 'id' ? 'EN' : 'ID'}</button>
           </li>
           <li>
-            <Link to="/">{locale === 'id' ? 'Aktif' : 'Active'}</Link>
+            <Link to="/notes">{locale === 'id' ? 'Aktif' : 'Active'}</Link>
           </li>
           <li>
-            <Link to="/archived">{locale === 'id' ? 'Diarsipkan' : 'Archived'}</Link>
+            <Link to="/notes/archived">{locale === 'id' ? 'Diarsipkan' : 'Archived'}</Link>
           </li>
           <li>
             <button aria-label={locale === 'id' ? `${name} keluar dari akun` : `${name} logout from account`} type="button" onClick={logout}>

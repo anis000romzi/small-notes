@@ -18,8 +18,13 @@ function DetailPage() {
   }, [id]);
 
   async function onDeleteHandler(noteId) {
+    if (note.archived) {
+      await NotesApiSource.deleteNote(noteId);
+      navigate('/notes/archived');
+      return;
+    }
     await NotesApiSource.deleteNote(noteId);
-    navigate('/');
+    navigate('/notes');
   }
 
   async function onActiveHandler(noteId) {

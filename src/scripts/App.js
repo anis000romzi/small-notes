@@ -90,9 +90,11 @@ function App() {
         <HeaderBar logout={onLogout} name={authedUser.name} />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/archived" element={<ArchivePage />} />
-          <Route path="/new" element={<AddPage />} />
-          <Route path="/:id" element={<DetailPage />} />
+          <Route path="/notes" element={<HomePage />} />
+          <Route path="/index.html" element={<HomePage />} />
+          <Route path="/notes/archived" element={<ArchivePage />} />
+          <Route path="/notes/new" element={<AddPage />} />
+          <Route path="/notes/:id" element={<DetailPage />} />
         </Routes>
       </>
     </LocaleProvider>

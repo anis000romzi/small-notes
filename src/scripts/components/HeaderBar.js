@@ -4,9 +4,28 @@ import { Link } from 'react-router-dom';
 import { FiLogOut, FiMoon, FiSun } from 'react-icons/fi';
 import LocaleContext from '../context/LocaleContext';
 
-function HeaderBar({ logout, name }) {
+function useOutsideClickHandler() {
   const ref = React.useRef(null);
   const [navOpen, setNavOpen] = React.useState(false);
+
+  function handleClickOutside(event) {
+    if (ref.current && !ref.current.contains(event.target)) {
+      setNavOpen(false);
+    }
+  }
+
+  React.useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  return { ref, navOpen, setNavOpen };
+}
+
+function HeaderBar({ logout, name }) {
+  const { ref, navOpen, setNavOpen } = useOutsideClickHandler();
   const {
     locale, theme, toggleTheme, toggleLocale,
   } = React.useContext(LocaleContext);
@@ -39,10 +58,10 @@ function HeaderBar({ logout, name }) {
             <button aria-label={locale === 'id' ? 'Ubah bahasa' : 'Change language'} type="button" onClick={toggleLocale}>{locale === 'id' ? 'EN' : 'ID'}</button>
           </li>
           <li>
-            <Link to="/notes">{locale === 'id' ? 'Aktif' : 'Active'}</Link>
+            <Link to="/notes" onClick={() => setNavOpen(false)}>{locale === 'id' ? 'Aktif' : 'Active'}</Link>
           </li>
           <li>
-            <Link to="/notes/archived">{locale === 'id' ? 'Diarsipkan' : 'Archived'}</Link>
+            <Link to="/notes/archived" onClick={() => setNavOpen(false)}>{locale === 'id' ? 'Diarsipkan' : 'Archived'}</Link>
           </li>
           <li>
             <button aria-label={locale === 'id' ? `${name} keluar dari akun` : `${name} logout from account`} type="button" onClick={logout}>
